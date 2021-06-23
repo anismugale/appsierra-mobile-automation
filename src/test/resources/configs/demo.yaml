@@ -1,0 +1,50 @@
+app:
+  android-app-name: android.apk
+  ios-app-name: ios.app
+
+#  This Framework support following platform
+#  platform = {ios, android, browserstack}
+#
+driver-details:
+  verbose: true
+  platform: android
+  protocol: http
+  domain: 127.0.0.1
+  port: 4723
+  serverUrl: http://127.0.0.1:4723/wd/hub
+  listeners:
+    - ConsolePrinterListener
+    - HighlightListener
+
+browserStack:
+  username: anismugale1
+  accessKey: 6L5Gqq52jbKD6WpUYGxq
+  appUrl: bs://b1a123ab86b5808af53d48f7d3be0942c05ffabf
+  serverUrl: http://hub.browserstack.com/wd/hub
+  device: Redmi Note 4
+  deviceType: android
+  os-version: "7.0"
+  build: UAT
+  project: mobile-test-automation
+  sessionName: My First Session
+
+capabilities:
+  android:
+    deviceName: Redmi
+    platformVersion: 7.0
+    appPackage: io.appium.android.apis
+    appActivity: io.appium.android.apis.ApiDemos
+  IOS:
+    deviceName: Google Pixel 3
+    platformVersion: 9.0
+    bundleId: your_bundle_id
+    wdaLocalPort: add_your_port_here
+    webkitDebugProxyPort: add_proxy_port_here
+
+timeout:
+  implicit: 20
+  explicit: 20
+  poolingInterval: 200
+  page: 40
+  avdLaunchTimeout: 180000
+  new_command_timeout: 20
