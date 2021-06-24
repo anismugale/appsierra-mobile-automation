@@ -1,5 +1,5 @@
 app:
-  android-app-name: android.apk
+  android-app-name: ApiDemos-debug.apk
   ios-app-name: ios.app
 
 #  This Framework support following platform
@@ -19,11 +19,11 @@ driver-details:
 browserStack:
   username: anismugale1
   accessKey: 6L5Gqq52jbKD6WpUYGxq
-  appUrl: bs://b1a123ab86b5808af53d48f7d3be0942c05ffabf
+  appUrl: bs://943ed761c082c0850828d0af78a1764d3c2ed23e
   serverUrl: http://hub.browserstack.com/wd/hub
-  device: Redmi Note 4
+  device: V2029
   deviceType: android
-  os-version: "7.0"
+  os-version: "10.0"
   build: UAT
   project: mobile-test-automation
   sessionName: My First Session

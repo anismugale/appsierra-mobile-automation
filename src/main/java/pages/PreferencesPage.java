@@ -1,29 +1,38 @@
 package pages;
 
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import base.BasePage;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class PreferencesPage extends BasePage  {
 	
-
-    @FindBy(xpath="//android.widget.TextView[@text='3. Preference dependencies']")
+	WebDriver driver;
+	
+	@AndroidFindBy(xpath="//android.widget.TextView[@text='3. Preference dependencies']")
 	public WebElement dependencies;
 	
-    @FindBy(id="android:id/checkbox")
+	@AndroidFindBy(id="android:id/checkbox")
 	public WebElement checkbox;
 	
-    @FindBy(xpath="(//android.widget.RelativeLayout)[2]")
+	@AndroidFindBy(xpath="(//android.widget.RelativeLayout)[2]")
 	public WebElement layout;
 	
-    @FindBy(className="android.widget.EditText")
+	@AndroidFindBy(className="android.widget.EditText")
 	public WebElement editText;
+	
+	@AndroidFindBy(className="android.widget.Button")
+	public List<AndroidElement> buttons;
 	
 	
 	public PreferencesPage(AppiumDriver driver) {
         super(driver);
+        this.driver = driver;
     }
 	
 	

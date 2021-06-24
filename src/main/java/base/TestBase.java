@@ -1,6 +1,7 @@
 
 package base;
 
+import commons.MyScreenRecorder;
 import commons.ResourceReader;
 import configurations.Configs;
 import configurations.sections.*;
@@ -30,8 +31,14 @@ public class TestBase {
     public static AppiumDriver driver;
     public PageObjectManager pages;
 
+    @BeforeSuite
+    public void screenRecording() throws Exception {
+    	MyScreenRecorder.startRecording("screenRecording");
+    }
+    
     @BeforeTest
-    public void invokingAppiumServer() throws Exception {
+    public void invokingAppiumServer() throws IOException {
+    	
         Configs.loadEnvironmentConfiguration();
         if (DriverDetails.platform.equalsIgnoreCase("browserstack")) {
             log.info("Starting Browserstack server");
@@ -72,8 +79,12 @@ public class TestBase {
             server.stop();
             log.info("stopped server");
         }
+       
     }
-
+    @AfterSuite
+    public void stopRecording() throws Exception {
+    	 MyScreenRecorder.stopRecording();
+    }
     public AppiumDriver getDriver() {
         if (driver != null) {
             return driver;

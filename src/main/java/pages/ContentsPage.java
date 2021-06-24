@@ -1,40 +1,43 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import base.BasePage;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class ContentsPage extends BasePage {
 
+	WebDriver driver;
 	
-    @FindBy(xpath="//android.widget.TextView[@content-desc=\"Storage\"]")
+	@AndroidFindBy(xpath="//android.widget.TextView[@content-desc=\"Storage\"]")
 	public WebElement storage;
 	
-	@FindBy(id="android:id/text1")
+	@AndroidFindBy(id="android:id/text1")
 	public WebElement externalStorage;
 	
-	@FindBy(xpath="(//android.widget.Button[@content-desc=\"Create\"])[1]")
+	@AndroidFindBy(xpath="(//android.widget.Button[@content-desc=\"Create\"])[1]")
 	public WebElement create;
 	
-	@FindBy(xpath="(//android.widget.Button[@content-desc=\"Delete\"])[1]")
+	@AndroidFindBy(xpath="(//android.widget.Button[@content-desc=\"Delete\"])[1]")
 	public WebElement delete;
 	
-	@FindBy(xpath="//android.widget.TextView[@content-desc=\"Provider\"]")
+	@AndroidFindBy(xpath="//android.widget.TextView[@content-desc=\"Provider\"]")
 	public WebElement provider;
 	
-	@FindBy(xpath="//android.widget.TextView[@content-desc=\"Pick Contact\"]")
+	@AndroidFindBy(xpath="//android.widget.TextView[@content-desc=\"Pick Contact\"]")
 	public WebElement pickContact;
 	
-	@FindBy(id="io.appium.android.apis:id/pick_contact")
+	@AndroidFindBy(id="io.appium.android.apis:id/pick_contact")
 	public WebElement contactButton;
 	
-	@FindBy(xpath="//*[contains(@text,'Choose a contact')]")
+	@AndroidFindBy(xpath="//*[contains(@text,'Choose a contact')]")
 	public WebElement chooseContact;
 	
 	public ContentsPage(AppiumDriver driver) {
         super(driver);
+        this.driver = driver;
     }
 	
 }
