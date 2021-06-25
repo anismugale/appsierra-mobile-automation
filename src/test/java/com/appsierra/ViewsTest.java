@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import base.TestBase;
 
-public class ApiDemoTest2 extends TestBase{
+public class ViewsTest extends TestBase{
 	
 	@Test(priority=1)
 	public void viewsTest() {

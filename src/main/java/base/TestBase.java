@@ -1,10 +1,29 @@
-
 package base;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.ServerSocket;
+import java.net.URL;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
 import commons.MyScreenRecorder;
 import commons.ResourceReader;
 import configurations.Configs;
-import configurations.sections.*;
+import configurations.sections.AndroidCapability;
+import configurations.sections.AppDetails;
+import configurations.sections.BrowserStack;
+import configurations.sections.DriverDetails;
+import configurations.sections.IosCapability;
+import configurations.sections.Timeout;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.events.EventFiringWebDriverFactory;
@@ -13,32 +32,18 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import listeners.LoggerEventListener;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.*;
 import pages.PageObjectManager;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.ServerSocket;
-import java.net.URL;
 
 public class TestBase {
     private static DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
     private static Logger log = LogManager.getLogger(TestBase.class);
     private static AppiumDriverLocalService server;
     public static AppiumDriver driver;
+    private static MyScreenRecorder screenRecorder;
     public PageObjectManager pages;
 
-    @BeforeSuite
-    public void screenRecording() throws Exception {
-    	MyScreenRecorder.startRecording("screenRecording");
-    }
-    
     @BeforeTest
     public void invokingAppiumServer() throws IOException {
-    	
         Configs.loadEnvironmentConfiguration();
         if (DriverDetails.platform.equalsIgnoreCase("browserstack")) {
             log.info("Starting Browserstack server");
@@ -54,6 +59,10 @@ public class TestBase {
                 log.info("server is already running");
             }
         }
+    }
+    @BeforeSuite
+    public void screenRecording() throws Exception {
+    	screenRecorder.startRecording("screenRecording");
     }
 
     @BeforeMethod
@@ -79,11 +88,10 @@ public class TestBase {
             server.stop();
             log.info("stopped server");
         }
-       
     }
     @AfterSuite
     public void stopRecording() throws Exception {
-    	 MyScreenRecorder.stopRecording();
+    	screenRecorder.stopRecording();
     }
     public AppiumDriver getDriver() {
         if (driver != null) {

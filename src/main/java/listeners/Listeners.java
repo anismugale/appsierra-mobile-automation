@@ -18,9 +18,8 @@ public class Listeners implements ITestListener, IAnnotationTransformer {
 
     }
 
-    public void onStart(ITestContext arg0) {
-        // TODO Auto-generated method stub
-        //
+    public void onStart(ITestResult result) {
+    	
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
