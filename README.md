@@ -1,6 +1,6 @@
 # mobile test automation
 QA Automation
-This repository contains mobile automation for the AppSierra. It uses Selenium, via appium that connects to Android/IOS.
+This repository contains mobile automation. It uses Selenium, via appium that connects to Android/IOS.
 
 ## Based on
 
